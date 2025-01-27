@@ -167,9 +167,11 @@ $(document).ready(function () {
   function activateFirstItem() {
     const $firstNameItem = $(".collections-names_item").first();
     const $firstImgItem = $(".collections-img_item").first();
+    const $firstCoverImg = $(".collection-cover-img").first();
 
     $firstNameItem.addClass("active");
     $firstImgItem.addClass("active");
+    $firstCoverImg.addClass("active");
 
     gsap.to($firstNameItem, { opacity: 1 });
     gsap.to($firstNameItem.find(".collection-name_line"), { width: "2rem" });
@@ -188,26 +190,22 @@ $(document).ready(function () {
       // Remove active states
       $(".collections-names_item").removeClass("active");
       $(".collections-img_item").removeClass("active");
+      $(".collection-cover-img").removeClass("active");
       gsap.to(".collections-names_item", { opacity: 0.6 });
       gsap.to(".collection-name_line", { width: "0" });
       gsap.to(".collection-img", { scale: 1 });
+      //gsap.to(".collection-cover-img", {opacity: 0})
 
       // Add active states to hovered items
       $this.addClass("active");
       const $matchingImg = $(`.collections-img_item[order="${order}"]`);
       $matchingImg.addClass("active");
+      const $matchingCoverImg = $(`.collection-cover-img[order="${order}"]`);
+      $matchingCoverImg.addClass("active");
 
       // Animate the hover effects
       gsap.to($this, { opacity: 1 });
       gsap.to($this.find(".collection-name_line"), { width: "2rem" });
-      gsap.to($matchingImg.find(".collection-img"), {
-        opacity: 1,
-        duration: 0.3,
-      });
-      gsap.to($matchingImg.find(".collection-img"), {
-        scale: 1.1,
-        duration: 2,
-      });
     },
     function () {
       // Optionally handle hover-out logic
