@@ -107,58 +107,6 @@ $(".grid_item:nth-child(3n+3)").each(function (index) {
   });
 });
 
-/////////// FOG ANIMATION
-// // Select all fog layers across all containers
-// document.querySelectorAll(".fog-layer").forEach((layer) => {
-//   // Randomize speed for each fog layer
-//   const speed = 120 + Math.random() * 60; // Between 5s and 15s
-//   const startX = Math.random() * 100 - 50; // Random starting X position (-50% to +50%)
-//   const moveLeft = Math.random() > 0.5; // Randomly decide direction
-
-//   // Set the initial random X position
-//   gsap.set(layer, { x: `${startX}%` });
-
-//   // Animate each layer independently
-//   gsap.to(layer, {
-//     x: moveLeft ? "-100%" : "100%", // Move left or right based on random choice
-//     ease: "none", // Linear motion for seamless looping
-//     duration: speed, // Unique duration for each layer
-//     repeat: -1, // Infinite looping
-//   });
-// });
-
-//////// COLLECTIONS TABS
-// Function to activate the first item on page load
-// function activateFirstItem() {
-//   const imgItems = Array.from(
-//     document.querySelectorAll(".collections-img_item")
-//   );
-//   const firstItem = imgItems.reduce((prev, current) => {
-//     const prevOrder = parseInt(prev.getAttribute("order"), 10);
-//     const currentOrder = parseInt(current.getAttribute("order"), 10);
-//     return prevOrder < currentOrder ? prev : current;
-//   });
-
-//   if (firstItem) firstItem.classList.add("active");
-// }
-
-// // Add hover functionality for tabs
-// document.querySelectorAll(".collections-names_item").forEach((nameItem) => {
-//   nameItem.addEventListener("mouseenter", () => {
-//     const order = nameItem.getAttribute("order");
-//     const imgItems = document.querySelectorAll(".collections-img_item");
-
-//     // Hide all images
-//     imgItems.forEach((imgItem) => imgItem.classList.remove("active"));
-
-//     // Show the corresponding image
-//     const matchingImg = document.querySelector(
-//       `.collections-img_item[order="${order}"]`
-//     );
-//     if (matchingImg) matchingImg.classList.add("active");
-//   });
-// });
-
 // // Activate the first item on page load
 // activateFirstItem();
 
@@ -191,7 +139,7 @@ $(document).ready(function () {
       $(".collections-names_item").removeClass("active");
       $(".collections-img_item").removeClass("active");
       $(".collection-cover-img").removeClass("active");
-      gsap.to(".collections-names_item", { opacity: 0.6 });
+      //gsap.to(".collections-names_item", { opacity: 0.6 });
       gsap.to(".collection-name_line", { width: "0" });
       gsap.to(".collection-img", { scale: 1 });
       //gsap.to(".collection-cover-img", {opacity: 0})
