@@ -19,9 +19,16 @@ window.addEventListener("DOMContentLoaded", (event) => {
     },
   });
   showMainMenu.set(menuWrap, { display: "block" });
-  showMainMenu.to("html", { "--navbar--text": "#131936" }, "<");
   showMainMenu.from(menuWrap, { y: "-100%", opacity: 0 }, "<");
   showMainMenu.to(ring, { rotate: 90 }, "<");
+  // change navbar color only on mobile
+  if (window.matchMedia("(max-width: 767px)").matches) {
+    showMainMenu.to(
+      "html",
+      { "--elements-color--navbar-top-elements": "#d4d0cc" },
+      "<"
+    );
+  }
 
   navButton.on("click", function () {
     if (showMainMenu.progress() === 0) {
