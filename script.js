@@ -114,8 +114,7 @@ $(".grid_item:nth-child(3n+3)").each(function (index) {
   });
 });
 
-// // Activate the first item on page load
-// activateFirstItem();
+////// Collections page, hover funcionality
 
 $(document).ready(function () {
   // Activate the first item on page load
@@ -128,10 +127,10 @@ $(document).ready(function () {
     $firstImgItem.addClass("active");
     $firstCoverImg.addClass("active");
 
-    gsap.to($firstNameItem, { opacity: 1 });
+    //gsap.to($firstNameItem, { opacity: 1 });
     gsap.to($firstNameItem.find(".collection-name_line"), { width: "2rem" });
-    gsap.to($firstImgItem.find(".collection-img"), { scale: 1.1 });
-    gsap.to($firstImgItem.find(".collection-img"), { opacity: 1 });
+    //gsap.to($firstImgItem.find(".collection-img"), { scale: 1.1 });
+    //gsap.to($firstImgItem.find(".collection-img"), { opacity: 1 });
   }
 
   activateFirstItem();
@@ -148,7 +147,7 @@ $(document).ready(function () {
       $(".collection-cover-img").removeClass("active");
       //gsap.to(".collections-names_item", { opacity: 0.6 });
       gsap.to(".collection-name_line", { width: "0" });
-      gsap.to(".collection-img", { scale: 1 });
+      //gsap.to(".collection-img", { scale: 1 });
       //gsap.to(".collection-cover-img", {opacity: 0})
 
       // Add active states to hovered items
@@ -159,7 +158,7 @@ $(document).ready(function () {
       $matchingCoverImg.addClass("active");
 
       // Animate the hover effects
-      gsap.to($this, { opacity: 1 });
+      //gsap.to($this, { opacity: 1 });
       gsap.to($this.find(".collection-name_line"), { width: "2rem" });
     },
     function () {
@@ -169,6 +168,7 @@ $(document).ready(function () {
 });
 
 /////// SWIPER
+//Slider product page
 $(".product-gallery_component").each(function (index) {
   const swiper = new Swiper($(this).find(".swiper")[0], {
     slidesPerView: 3,
@@ -212,4 +212,99 @@ $(".product-gallery_component").each(function (index) {
     //   disabledClass: "is-disabled",
     // },
   });
+});
+
+document.addEventListener("DOMContentLoaded", function () {
+  const topEl = document.querySelector(".is-top-swiper");
+  const bottomEl = document.querySelector(".is-bottom-swiper");
+
+  if (!topEl || !bottomEl) {
+    console.warn("Swiper elements not found!");
+    return;
+  }
+
+  // Bottom Swiper
+  const bottomSwiper = new Swiper(bottomEl, {
+    slidesPerView: 1,
+    speed: 500,
+    centerSlides: true,
+    loop: true,
+    //loopAdditionalSlides: 2,
+    //watchOverflow: true,
+    breakpoints: {
+      768: {
+        //slidesPerView: "auto",
+        slidesPerView: "auto",
+        //slideToClickedSlide: true,
+        //centerSlides: true,
+        //loopAdditionalSlides: 2,
+        loop: false,
+      },
+    },
+  });
+
+  // Collection slide element animations. CSS on collections page
+  document.querySelectorAll("[collection-animate]").forEach((group) => {
+    Array.from(group.children).forEach((el, i) => {
+      el.style.setProperty("--delay", `${i * 0.05}s`);
+    });
+  });
+
+  // Top Swiper
+  const topSwiper = new Swiper(topEl, {
+    slidesPerView: 1,
+    speed: 500,
+    //centerInsufficientSlides: true,
+    slideToClickedSlide: false,
+    loop: true,
+    //watchOverflow: true,
+    navigation: {
+      nextEl: ".swiper-next",
+      prevEl: ".swiper-prev",
+    },
+    breakpoints: {
+      768: {
+        //slidesPerView: "auto",
+        speed: 1200,
+        slidesPerView: 1,
+        // slidesPerGroup: 3,
+        slideToClickedSlide: true,
+        centerSlides: true,
+        //loopAdditionalSlides: 2,
+        loop: false,
+      },
+    },
+  });
+
+  // document
+  //   .querySelectorAll(".is-top-swiper.swiper-slide")
+  //   .forEach((slide, index) => {
+  //     slide.addEventListener("click", () => {
+  //       topSwiper.slideToLoop(index);
+  //     });
+  //   });
+
+  // Link sliders
+  topSwiper.controller.control = bottomSwiper;
+  bottomSwiper.controller.control = topSwiper;
+
+  // Add hover & click behavior
+  // document
+  //   .querySelectorAll(".is-top-swiper .swiper-slide")
+  //   .forEach((slide, index) => {
+  //     const goToSlide = () => {
+  //       console.log("Trying to go to slide:", index);
+  //       if (topSwiper.params.loop && window.innerWidth < 768) {
+  //         topSwiper.slideToLoop(index);
+  //       } else {
+  //         topSwiper.slideTo(index);
+  //       }
+  //     };
+
+  //     if (window.innerWidth >= 768) {
+  //       slide.addEventListener("mouseenter", goToSlide);
+  //     }
+
+  //     slide.addEventListener("click", goToSlide);
+  //   });
 });
