@@ -171,11 +171,12 @@ $(document).ready(function () {
 //Slider product page
 $(".product-gallery_component").each(function (index) {
   const swiper = new Swiper($(this).find(".swiper")[0], {
-    slidesPerView: 3,
+    slidesPerView: 1.15,
     spaceBetween: 6,
     speed: 500,
     centerInsufficientSlides: true,
-    loop: true,
+    grabCursor: true,
+    //loop: true,
     watchOverflow: true,
     // autoplay: {
     //   delay: 6000,
@@ -189,13 +190,13 @@ $(".product-gallery_component").each(function (index) {
       },
       // when it gets bigger than 991px
       768: {
+        loop: true,
         slidesPerView: 2,
         spaceBetween: 6,
       },
       // when it gets bigger than 991px
       991: {
         slidesPerView: 3,
-        //slidesPerGroup: 2,
         spaceBetween: 6,
       },
     },
